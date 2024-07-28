@@ -13,8 +13,16 @@ exports.getProducts = void 0;
 const productModel_1 = require("../models/productModel");
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allProducts = yield (0, productModel_1.getAllProducts)(1, 10);
-        res.status(200).send(allProducts);
+        const page = parseInt(req.query.page, 10) || 1;
+        const pageSize = parseInt(req.query.pageSize, 10) || 10;
+        const { products, total } = yield (0, productModel_1.getAllProducts)(page, pageSize);
+        const totalPages = Math.ceil(total / pageSize);
+        res.status(200).json({
+            total,
+            pageSize,
+            totalPages,
+            products,
+        });
     }
     catch (error) {
         res.status(500).send({ error: 'Failed to fetch products' });
