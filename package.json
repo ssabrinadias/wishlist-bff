@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon",
-    "build": "echo '✅ Building project...' && tsc",
-    "ts.check": "tsc --project tsconfig.json"
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "echo '✅ Building project...' && tsc"
   },
   "keywords": [],
   "author": "",
