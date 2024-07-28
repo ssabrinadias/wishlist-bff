@@ -13,7 +13,7 @@ exports.getProducts = void 0;
 const productModel_1 = require("../models/productModel");
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allProducts = yield (0, productModel_1.getAllProducts)();
+        const allProducts = yield (0, productModel_1.getAllProducts)(1, 10);
         res.status(200).send(allProducts);
     }
     catch (error) {

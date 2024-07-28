@@ -12,7 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllProducts = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    return prisma.product.findMany();
+const getAllProducts = (page, pageSize) => __awaiter(void 0, void 0, void 0, function* () {
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
+    const [products, total] = yield Promise.all([
+        prisma.product.findMany({
+            skip,
+            take,
+        }),
+        prisma.product.count(),
+    ]);
+    return { products, total };
 });
 exports.getAllProducts = getAllProducts;
