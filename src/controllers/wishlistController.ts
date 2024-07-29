@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export const getWishlist = async (req: Request, res: Response) => {
   const userId = req.params.userId;
-  const token = req.headers.authorization;
+  // const token = req.headers.authorization;
 
   if (!userId) {
     return res.status(400).send({ error: 'User ID is required' });

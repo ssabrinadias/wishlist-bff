@@ -3,17 +3,54 @@ import { PrismaClient, User as PrismaUser } from '@prisma/client';
 const prisma = new PrismaClient();
 type UserWithWishList = PrismaUser & { wishList: { products: string[] } | null };
 
-
-export const getAllProducts = async (userId: string, token?: string) => {
-  const productsList = await prisma.wishList.findMany({
-    where: {
-      userId: userId, 
+interface IProduct {
+  products: {
+    id: string;
+    code: string;
+    name: string;
+    available: boolean;
+    visible: boolean;
+    fullPriceInCents: string;
+    salePriceInCents: string;
+    rating: number;
+    image: string;
+    stockAvailable: boolean;
+    details: {
+      name: string;
+      description: string;
     }
+  }
+  
+}
+
+
+export const getAllProducts = async (userId: string)  => {
+  const wishlist = await prisma.wishList.findUnique({
+    where: {
+      userId: userId,
+    },
   });
-  return { productsList };
+
+  if (!wishlist) {
+    throw new Error('Wishlist not found');
+  }
+
+  const products  = [];
+
+  for (const productId of wishlist.products) {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+
+    if (product) {
+      products.push(product);
+    }
+  }
+
+   return { userId, products };;
 };
-
-
 
 export const updateFavoritesProduct = async (userId: string, productId: string): Promise<void> => {
   try {

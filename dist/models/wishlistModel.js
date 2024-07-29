@@ -12,13 +12,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeFromWishlist = exports.updateFavoritesProduct = exports.getAllProducts = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllProducts = (userId, token) => __awaiter(void 0, void 0, void 0, function* () {
-    const productsList = yield prisma.wishList.findMany({
+const getAllProducts = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const wishlist = yield prisma.wishList.findUnique({
         where: {
             userId: userId,
-        }
+        },
     });
-    return { productsList };
+    if (!wishlist) {
+        throw new Error('Wishlist not found');
+    }
+    const products = [];
+    for (const productId of wishlist.products) {
+        const product = yield prisma.product.findUnique({
+            where: {
+                id: productId,
+            },
+        });
+        if (product) {
+            products.push(product);
+        }
+    }
+    return { userId, products };
+    ;
 });
 exports.getAllProducts = getAllProducts;
 const updateFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, void 0, function* () {

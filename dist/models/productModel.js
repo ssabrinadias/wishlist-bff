@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllProducts = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllProducts = (page, pageSize) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllProducts = (page, pageSize, userId) => __awaiter(void 0, void 0, void 0, function* () {
     const skip = (page - 1) * pageSize;
     const take = pageSize;
     const [products, total] = yield Promise.all([
@@ -22,6 +22,20 @@ const getAllProducts = (page, pageSize) => __awaiter(void 0, void 0, void 0, fun
         }),
         prisma.product.count(),
     ]);
-    return { products, total };
+    let wishlist = [];
+    console.log('---->>>>', userId);
+    if (userId) {
+        try {
+            const userWishlist = yield prisma.wishList.findUnique({
+                where: { userId },
+            });
+            wishlist = userWishlist ? userWishlist.products : [];
+        }
+        catch (error) {
+            console.error('Error fetching wishlist:', error);
+        }
+    }
+    const productsWithWishlistStatus = products.map(product => (Object.assign(Object.assign({}, product), { isInWishlist: wishlist.includes(product.id) })));
+    return { products: productsWithWishlistStatus, total };
 });
 exports.getAllProducts = getAllProducts;

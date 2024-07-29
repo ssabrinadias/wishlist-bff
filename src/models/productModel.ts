@@ -2,7 +2,11 @@ import { PrismaClient, Product } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getAllProducts = async (page: number, pageSize: number): Promise<{ products: Product[], total: number }> => {
+interface ProductWithWishlistStatus extends Product {
+  isInWishlist?: boolean;
+}
+
+export const getAllProducts = async (page: number, pageSize: number,  userId?: string): Promise<{ products: ProductWithWishlistStatus[], total: number }> => {
   const skip = (page - 1) * pageSize;
   const take = pageSize;
 
@@ -14,5 +18,24 @@ export const getAllProducts = async (page: number, pageSize: number): Promise<{ 
     prisma.product.count(),
   ]);
 
-  return { products, total };
+  let wishlist: string[] = [];
+
+    console.log('---->>>>',userId)
+  if (userId) {
+    try {
+      const userWishlist = await prisma.wishList.findUnique({
+        where: { userId },
+      });
+    wishlist = userWishlist ? userWishlist.products : [];
+    } catch (error) {
+      console.error('Error fetching wishlist:', error);
+    }
+  }
+
+  const productsWithWishlistStatus = products.map(product => ({
+    ...product,
+    isInWishlist: wishlist.includes(product.id),
+  }));
+
+  return { products:productsWithWishlistStatus, total };
 };

@@ -15,7 +15,7 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getWishlist = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.params.userId;
-    const token = req.headers.authorization;
+    // const token = req.headers.authorization;
     if (!userId) {
         return res.status(400).send({ error: 'User ID is required' });
     }

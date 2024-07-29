@@ -15,7 +15,8 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const page = parseInt(req.query.page, 10) || 1;
         const pageSize = parseInt(req.query.pageSize, 10) || 10;
-        const { products, total } = yield (0, productModel_1.getAllProducts)(page, pageSize);
+        const userId = req.get('userId');
+        const { products, total } = yield (0, productModel_1.getAllProducts)(page, pageSize, userId);
         const totalPages = Math.ceil(total / pageSize);
         res.status(200).json({
             total,
