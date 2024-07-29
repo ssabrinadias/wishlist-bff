@@ -52,7 +52,7 @@ export const getAllProducts = async (userId: string)  => {
    return { userId, products };;
 };
 
-export const updateFavoritesProduct = async (userId: string, productId: string): Promise<void> => {
+export const addFavoritesProduct = async (userId: string, productId: string ): Promise<void> => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -66,7 +66,6 @@ export const updateFavoritesProduct = async (userId: string, productId: string):
           products: [productId],
         },
       });
-      console.log('WishList created and product added.');
     } else {
       await prisma.wishList.update({
         where: { userId: userId },

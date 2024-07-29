@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeFromWishlist = exports.updateFavoritesProduct = exports.getAllProducts = void 0;
+exports.removeFromWishlist = exports.addFavoritesProduct = exports.getAllProducts = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getAllProducts = (userId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,7 +36,7 @@ const getAllProducts = (userId) => __awaiter(void 0, void 0, void 0, function* (
     ;
 });
 exports.getAllProducts = getAllProducts;
-const updateFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, void 0, function* () {
+const addFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.user.findUnique({
             where: { id: userId },
@@ -49,7 +49,6 @@ const updateFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, 
                     products: [productId],
                 },
             });
-            console.log('WishList created and product added.');
         }
         else {
             yield prisma.wishList.update({
@@ -67,7 +66,7 @@ const updateFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, 
         yield prisma.$disconnect();
     }
 });
-exports.updateFavoritesProduct = updateFavoritesProduct;
+exports.addFavoritesProduct = addFavoritesProduct;
 const removeFromWishlist = (userId, productId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.user.findUnique({

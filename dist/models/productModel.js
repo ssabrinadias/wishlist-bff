@@ -23,7 +23,6 @@ const getAllProducts = (page, pageSize, userId) => __awaiter(void 0, void 0, voi
         prisma.product.count(),
     ]);
     let wishlist = [];
-    console.log('---->>>>', userId);
     if (userId) {
         try {
             const userWishlist = yield prisma.wishList.findUnique({

@@ -20,7 +20,6 @@ export const getAllProducts = async (page: number, pageSize: number,  userId?: s
 
   let wishlist: string[] = [];
 
-    console.log('---->>>>',userId)
   if (userId) {
     try {
       const userWishlist = await prisma.wishList.findUnique({

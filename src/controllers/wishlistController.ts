@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllProducts, removeFromWishlist, updateFavoritesProduct } from '../models/wishlistModel';
+import { getAllProducts, removeFromWishlist, addFavoritesProduct } from '../models/wishlistModel';
 import { PrismaClient, User as PrismaUser } from '@prisma/client'
 
 type UserWithWishList = PrismaUser & { wishList: boolean | null };
@@ -21,7 +21,7 @@ export const getWishlist = async (req: Request, res: Response) => {
   }
 };
 
-export const updateWishlist = async (req: Request, res: Response) => {
+export const addWishlist = async (req: Request, res: Response) => {
   const userId = req.params.userId;
   const { productId } = req.body;
 
@@ -34,7 +34,7 @@ export const updateWishlist = async (req: Request, res: Response) => {
   }
 
   try {
-    await updateFavoritesProduct(userId, productId);
+    await addFavoritesProduct(userId, productId);
     res.status(200).send({ message: 'Wishlist updated successfully' });
   } catch (error) {
     res.status(500).send({ error: 'Failed to update wishlist' });
