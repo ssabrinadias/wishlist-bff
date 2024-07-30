@@ -45,7 +45,18 @@ Verifique se foi instalado corretamente
 mongoimport --version
 ```
 
+### CLone do Repositorio
+
+```
+git clone https://github.com/ssabrinadias/wishlist-bff.git
+
+cd wishlist-bff
+
+yarn install
+```
+
 ### Uso import DB
+Certifique-se que esta dentro do diretorio wishlist-bff e execute os comandos abaixo:
 
 ```
 mongoimport --uri "mongodb://localhost:27017/store" --collection User --jsonArray --file mocks/mock-user.json --legacy --type json --drop --jsonArray --file "mocks/mock-user.json" --username monty --password pass --authenticationDatabase admin `
@@ -53,4 +64,24 @@ mongoimport --uri "mongodb://localhost:27017/store" --collection User --jsonArra
 
 ```
 mongoimport --uri "mongodb://localhost:27017/store" --collection Product --jsonArray --file mocks/mock-products.json --legacy --type json --drop --jsonArray --file "mocks/mock-products.json" --username monty --password pass --authenticationDatabase admin 
+```
+
+
+
+## Scripts
+
+### Desenvolvimento
+
+To start the development server:
+
+```bash
+yarn dev
+
+Running on port http://localhost:9000/
+```
+
+To run the tests:
+
+```bash
+ yarn test
 ```
