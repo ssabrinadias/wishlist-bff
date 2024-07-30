@@ -1,6 +1,7 @@
 # Wishlist BFF
 
-Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist construido em node e foi utilizada a arquitetura MVC.
+Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist construido em node e foi utilizada a arquitetura baseada em MVC.
+A arquitetura MVC promove a separação de responsabilidades, facilitando manutenção, testes e colaboração eficiente no desenvolvimento de software.
 
 
 ## Instalação do BFF
