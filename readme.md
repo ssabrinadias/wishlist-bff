@@ -4,10 +4,15 @@ Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist.
 
 
 ## Instalação do BFF
-Para instalar o projeto você deve ter o docker e o mongo instalados previamente em sua maquina.
 
-Para configurar o projeto localmente, siga os passos abaixo:
+Para executar o projeto localmente, você precisará ter instalado:
+- docker 
+- NodeJs v20.10.0
+- Npm
 
+Após a instalaçâo, vamos preparar o ambiente para execuçâo:
+
+- Instalaçâo do banco
 ```
 docker pull prismagraphql/mongo-single-replica:5.0.3
 ```
