@@ -13,7 +13,8 @@ Para executar o projeto localmente, você precisará ter instalado:
 Após a instalaçâo, vamos preparar o ambiente para execuçâo:
 
 - Instalaçâo do banco
-Para o funcionamento do BFF precisamos fazer a instalação do MongoDB e após isso fazer uma carga inicial para criar os produtos na loja
+
+#### Para o funcionamento do BFF precisamos fazer a instalação do MongoDB e após isso fazer uma carga inicial para criar os produtos na loja
 
 ```
 docker pull prismagraphql/mongo-single-replica:5.0.3
@@ -28,7 +29,7 @@ docker run --name mongo \
 ```
 
 ### Mongoimport Instalação
-Para importar dados no MongoDB usando a ferramenta mongoimport siga os passos abaixo para instalação de acordo com seu sistema:
+Para importar dados no MongoDB vamos utilizar a ferramenta mongoimport, siga os passos abaixo para instalação de acordo com seu sistema:
 
 ####  mac:
 ```
@@ -61,6 +62,8 @@ apt-get update && apt-get install -y wget gnupg && \
     apt-get update && \
     apt-get install -y mongodb-database-tools
 ```
+
+Após a finalização do import, vamos seguir com o setup do ambiente
 
 ### CLone do Repositorio
 
