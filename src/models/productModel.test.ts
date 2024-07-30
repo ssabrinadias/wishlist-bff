@@ -1,5 +1,5 @@
 import { PrismaClient, Product } from '@prisma/client';
-import { getAllProducts } from '../../src/models/productModel';
+import { getAllProducts } from './productModel';
 
 jest.mock('@prisma/client', () => {
   const mPrismaClient = {

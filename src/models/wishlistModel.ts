@@ -34,9 +34,7 @@ export const getAllProducts = async (userId: string)  => {
   if (!wishlist) {
     throw new Error('Wishlist not found');
   }
-
   const products  = [];
-
   for (const productId of wishlist.products) {
     const product = await prisma.product.findUnique({
       where: {
@@ -71,7 +69,6 @@ export const addFavoritesProduct = async (userId: string, productId: string ): P
         where: { userId: userId },
         data: { products: { push: productId } },
       });
-      console.log('Product added to existing WishList.');
     }
   } catch (error) {
     console.error('Error adding product to WishList: ', error);
