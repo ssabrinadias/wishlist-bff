@@ -13,6 +13,8 @@ Para executar o projeto localmente, você precisará ter instalado:
 Após a instalaçâo, vamos preparar o ambiente para execuçâo:
 
 - Instalaçâo do banco
+Para o funcionamento do BFF precisamos fazer a instalação do MongoDB e após isso fazer uma carga inicial para criar os produtos na loja
+
 ```
 docker pull prismagraphql/mongo-single-replica:5.0.3
 ```
