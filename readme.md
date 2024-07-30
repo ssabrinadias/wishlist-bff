@@ -1,6 +1,6 @@
 # Wishlist BFF
 
-Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist. Ele serve como uma camada intermediária entre o frontend e os serviços de backend, proporcionando uma interface adaptada às necessidades do frontend.
+Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist. 
 
 
 ## Instalação do BFF
@@ -18,6 +18,31 @@ docker run --name mongo \
       -e MONGO_INITDB_ROOT_USERNAME="monty" \
       -e MONGO_INITDB_ROOT_PASSWORD="pass" \
       -d prismagraphql/mongo-single-replica:5.0.3
+```
+
+### Mongoimport Instalação
+Para importar dados no MongoDB usando a ferramenta mongoimport siga os passos abaixo para instalação de acordo com seu sistema:
+
+####  mac:
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew tap mongodb/brew
+
+brew install mongodb-community@6.0
+```
+Verifique se foi instalado corretamente
+```
+mongod --version
+```
+
+#### windows:
+acesse o link:
+[MongoDB Command Line Database Tools Download](https://www.mongodb.com/try/download/database-tools)
+
+Verifique se foi instalado corretamente
+```
+mongoimport --version
 ```
 
 ### Uso import DB
