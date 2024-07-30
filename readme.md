@@ -1,6 +1,6 @@
 # Wishlist BFF
 
-Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist. 
+Este projeto é o Backend for Frontend (BFF) para a aplicação Wishlist construido em node e foi utilizada a arquitetura MVC.
 
 
 ## Instalação do BFF
@@ -63,7 +63,7 @@ apt-get update && apt-get install -y wget gnupg && \
     apt-get install -y mongodb-database-tools
 ```
 
-Após a finalização do import, vamos seguir com o setup do ambiente
+Após a finalização da instalação do Mongo, vamos seguir com o setup do ambiente
 
 ### CLone do Repositorio
 
@@ -85,7 +85,6 @@ mongoimport --uri "mongodb://localhost:27017/store" --collection User --jsonArra
 ```
 mongoimport --uri "mongodb://localhost:27017/store" --collection Product --jsonArray --file mocks/mock-products.json --legacy --type json --drop --jsonArray --file "mocks/mock-products.json" --username monty --password pass --authenticationDatabase admin 
 ```
-
 
 
 ## Scripts
