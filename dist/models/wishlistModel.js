@@ -55,7 +55,6 @@ const addFavoritesProduct = (userId, productId) => __awaiter(void 0, void 0, voi
                 where: { userId: userId },
                 data: { products: { push: productId } },
             });
-            console.log('Product added to existing WishList.');
         }
     }
     catch (error) {

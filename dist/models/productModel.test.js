@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
-const productModel_1 = require("../../src/models/productModel");
+const productModel_1 = require("./productModel");
 jest.mock('@prisma/client', () => {
     const mPrismaClient = {
         product: {
